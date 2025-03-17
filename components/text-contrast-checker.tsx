@@ -9,6 +9,13 @@ interface TextContrastCheckerProps {
   backgroundColor: string
 }
 
+// Add custom variant styles for the Badge component
+const badgeVariantStyles = {
+  green: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100",
+  yellow: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100",
+  destructive: "bg-destructive text-destructive-foreground",
+}
+
 export function TextContrastChecker({ backgroundColor }: TextContrastCheckerProps) {
   const [text, setText] = useState("Sample Text")
   const [textColor, setTextColor] = useState("#000000")
@@ -68,7 +75,7 @@ export function TextContrastChecker({ backgroundColor }: TextContrastCheckerProp
           </div>
           <div className="mt-2 flex items-center gap-2">
             <span>Contrast Ratio: {contrastRatio.toFixed(2)}</span>
-            <Badge variant={badgeColor as "green" | "yellow" | "destructive"}>{wcagLevel}</Badge>
+            <Badge className={badgeVariantStyles[badgeColor as keyof typeof badgeVariantStyles]}>{wcagLevel}</Badge>
           </div>
         </div>
       </div>

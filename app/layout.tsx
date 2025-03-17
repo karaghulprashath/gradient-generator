@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -10,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ultimate CSS Gradient Generator - Create Beautiful Gradients',
     description: 'Create, customize, and export beautiful CSS gradients for your website or app.',
-    url: 'https://gradient-generator.example.com',
+    url: 'https://karaghulprashath.github.io/gradient-generator',
     siteName: 'Ultimate CSS Gradient Generator',
     images: [
       {
-        url: 'https://gradient-generator.example.com/og-image.png',
+        url: 'https://karaghulprashath.github.io/gradient-generator/og-image.png',
         width: 1200,
         height: 630,
       },
@@ -26,21 +27,29 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Ultimate CSS Gradient Generator - Create Beautiful Gradients',
     description: 'Create, customize, and export beautiful CSS gradients for your website or app.',
-    images: ['https://gradient-generator.example.com/twitter-image.png'],
+    images: ['https://karaghulprashath.github.io/gradient-generator/twitter-image.png'],
   },
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://gradient-generator.example.com" />
+        <link rel="canonical" href="https://karaghulprashath.github.io/gradient-generator" />
       </head>
-      <body className="min-h-screen bg-background">{children}</body>
+      <body className="min-h-screen bg-background">
+        {children}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9710534353231565"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   )
 }

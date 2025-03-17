@@ -11,8 +11,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BookmarkPlus, Heart } from "lucide-react"
 import { useState } from "react"
 
+interface Preset {
+  name: string
+  config: GradientConfig
+  isFavorite?: boolean
+}
+
 // Preset gradients
-const presets = [
+const presets: Preset[] = [
   {
     name: "Vaporwave",
     config: {

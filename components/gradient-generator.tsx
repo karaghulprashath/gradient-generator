@@ -33,9 +33,12 @@ export type GradientConfig = {
   }
 }
 
-export function GradientGenerator() {
+interface GradientGeneratorProps {
+  searchParams?: ReturnType<typeof useSearchParams>
+}
+
+export function GradientGenerator({ searchParams }: GradientGeneratorProps) {
   const { toast } = useToast()
-  const searchParams = useSearchParams()
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const [gradientConfig, setGradientConfig] = useState<GradientConfig>({
@@ -59,7 +62,7 @@ export function GradientGenerator() {
 
   // Load gradient from URL if present
   useEffect(() => {
-    const gradientParam = searchParams.get("gradient")
+    const gradientParam = searchParams?.get("gradient")
     if (gradientParam) {
       try {
         const decodedConfig = JSON.parse(atob(gradientParam))

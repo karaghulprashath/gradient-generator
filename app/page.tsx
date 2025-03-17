@@ -1,6 +1,15 @@
+"use client"
+
 import { Ad } from "@/components/ad"
 import { GradientGenerator } from "@/components/gradient-generator"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { Suspense } from "react"
+
+function GradientGeneratorWithParams() {
+  const searchParams = useSearchParams()
+  return <GradientGenerator searchParams={searchParams} />
+}
 
 export default function Home() {
   return (
@@ -19,7 +28,9 @@ export default function Home() {
           
           {/* Main content */}
           <div className="lg:col-span-8">
-            <GradientGenerator />
+            <Suspense fallback={<div>Loading...</div>}>
+              <GradientGeneratorWithParams />
+            </Suspense>
           </div>
           
           {/* Right sidebar ad */}

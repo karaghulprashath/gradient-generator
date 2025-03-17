@@ -2,10 +2,27 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import Script from "next/script"
 
 interface AdProps {
   type: "inline" | "sticky" | "sponsored-preset" | "left-sidebar" | "right-sidebar"
 }
+
+type AdsenseTypes = {
+  pid: string;
+}
+
+const AdSense = ({ pid }: AdsenseTypes) => {
+  return (
+    <Script 
+    async
+    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${pid}`}
+    crossOrigin="anonymous"
+    strategy="afterInteractive"
+    />
+  )
+}
+
 
 export function Ad({ type }: AdProps) {
   if (type === "sponsored-preset") {
@@ -55,19 +72,7 @@ export function Ad({ type }: AdProps) {
   if (type === "left-sidebar") {
     return (
       <Card className="p-4 sticky top-4">
-        <div className="space-y-2">
-          <div className="text-xs text-muted-foreground">Advertisement</div>
-          <h3 className="font-semibold">Design Templates</h3>
-          <p className="text-sm text-muted-foreground">
-            Access thousands of premium design templates for your projects
-          </p>
-          <Button
-            className="w-full"
-            onClick={() => window.open("https://example.com/templates", "_blank")}
-          >
-            Browse Templates
-          </Button>
-        </div>
+        <AdSense pid="ca-pub-9710534353231565" />
       </Card>
     )
   }
@@ -75,38 +80,14 @@ export function Ad({ type }: AdProps) {
   if (type === "right-sidebar") {
     return (
       <Card className="p-4 sticky top-4">
-        <div className="space-y-2">
-          <div className="text-xs text-muted-foreground">Advertisement</div>
-          <h3 className="font-semibold">CSS Gradient Course</h3>
-          <p className="text-sm text-muted-foreground">
-            Master CSS gradients with our comprehensive online course
-          </p>
-          <Button
-            className="w-full"
-            onClick={() => window.open("https://example.com/css-course", "_blank")}
-          >
-            Learn More
-          </Button>
-        </div>
+        <AdSense pid="ca-pub-9710534353231565" />
       </Card>
     )
   }
 
   return (
     <Card className="p-4">
-      <div className="space-y-2">
-        <div className="text-xs text-muted-foreground">Advertisement</div>
-        <h3 className="font-semibold">Get Professional Hosting</h3>
-        <p className="text-sm text-muted-foreground">
-          Launch your website with reliable and fast hosting from A2 Hosting
-        </p>
-        <Button
-          className="w-full"
-          onClick={() => window.open("https://www.a2hosting.com?aid=123456", "_blank")}
-        >
-          Start Now
-        </Button>
-      </div>
+      <AdSense pid="ca-pub-9710534353231565" />
     </Card>
   )
 } 

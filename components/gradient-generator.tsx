@@ -2,14 +2,12 @@
 
 import { Ad } from "@/components/ad"
 import { CustomEffects } from "@/components/custom-effects"
-import { ExportOptions } from "@/components/export-options"
 import { GradientBuilder } from "@/components/gradient-builder"
 import { GradientPatterns } from "@/components/gradient-patterns"
 import { GradientPresets } from "@/components/gradient-presets"
-import { SocialMediaSharer } from "@/components/social-media-sharer"
 import { TextContrastChecker } from "@/components/text-contrast-checker"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { UsageGuide } from "@/components/usage-guide"
+import { UtilityModal } from "@/components/utility-modal"
 import { useToast } from "@/hooks/use-toast"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
@@ -435,25 +433,30 @@ background-position: center;`
 
   return (
     <div className="space-y-8">
-      <div className="w-full h-64 rounded-lg shadow-lg mb-8 overflow-hidden" style={gradientStyle}>
+      <div className="w-full h-64 rounded-lg shadow-lg mb-8 overflow-hidden relative" style={gradientStyle}>
         {gradientConfig.effects.hoverEffect === "shine" && (
           <div className="w-full h-full hover:bg-white/10 transition-colors duration-300"></div>
         )}
         {gradientConfig.effects.hoverEffect === "parallax" && (
           <div className="w-full h-full transform hover:scale-110 transition-transform duration-500"></div>
         )}
+        
+        {/* Utility modal button */}
+        <div className="absolute bottom-4 right-4">
+          <UtilityModal 
+            gradientConfig={gradientConfig} 
+            onExport={exportAsImage} 
+          />
+        </div>
       </div>
 
       <Tabs defaultValue="builder" className="w-full">
-        <TabsList className="grid grid-cols-4 md:grid-cols-8 mb-4">
+        <TabsList className="grid grid-cols-2 md:grid-cols-5 mb-4">
           <TabsTrigger value="builder">Builder</TabsTrigger>
           <TabsTrigger value="presets">Presets</TabsTrigger>
           <TabsTrigger value="patterns">Patterns</TabsTrigger>
           <TabsTrigger value="contrast">Contrast</TabsTrigger>
-          <TabsTrigger value="export">Export</TabsTrigger>
-          <TabsTrigger value="share">Share</TabsTrigger>
           <TabsTrigger value="effects">Effects</TabsTrigger>
-          <TabsTrigger value="guide">Usage Guide</TabsTrigger>
         </TabsList>
 
         <TabsContent value="builder">
@@ -484,23 +487,11 @@ background-position: center;`
           />
         </TabsContent>
 
-        <TabsContent value="export">
-          <ExportOptions onExport={exportAsImage} />
-        </TabsContent>
-
-        <TabsContent value="share">
-          <SocialMediaSharer gradientConfig={gradientConfig} />
-        </TabsContent>
-
         <TabsContent value="effects">
           <CustomEffects
             effects={gradientConfig.effects}
             onChange={(effects) => updateGradientConfig({ effects })}
           />
-        </TabsContent>
-
-        <TabsContent value="guide">
-          <UsageGuide gradientConfig={gradientConfig} />
         </TabsContent>
       </Tabs>
 

@@ -1,3 +1,4 @@
+import { Ad } from "@/components/ad"
 import { GradientGenerator } from "@/components/gradient-generator"
 
 export default function Home() {
@@ -8,7 +9,31 @@ export default function Home() {
           <h1 className="text-4xl font-bold tracking-tight mb-2">Ultimate CSS Gradient Generator ✨</h1>
           <p className="text-muted-foreground text-lg">Create, Customize & Export Beautiful Gradients</p>
         </header>
-        <GradientGenerator />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Left sidebar ad */}
+          <div className="hidden lg:block lg:col-span-2">
+            <Ad type="left-sidebar" />
+          </div>
+          
+          {/* Main content */}
+          <div className="lg:col-span-8">
+            <GradientGenerator />
+          </div>
+          
+          {/* Right sidebar ad */}
+          <div className="hidden lg:block lg:col-span-2">
+            <Ad type="right-sidebar" />
+          </div>
+        </div>
+        
+        <footer className="mt-12 pt-6 border-t text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Ultimate CSS Gradient Generator. All rights reserved.</p>
+          <p className="mt-1">
+            <a href="#" className="hover:underline">Privacy Policy</a> · 
+            <a href="#" className="hover:underline ml-2">Terms of Service</a>
+          </p>
+        </footer>
       </div>
     </main>
   )

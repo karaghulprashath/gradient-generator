@@ -1,8 +1,10 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
 interface AdProps {
-  type: "inline" | "sticky" | "sponsored-preset"
+  type: "inline" | "sticky" | "sponsored-preset" | "left-sidebar" | "right-sidebar"
 }
 
 export function Ad({ type }: AdProps) {
@@ -47,6 +49,46 @@ export function Ad({ type }: AdProps) {
           </div>
         </Card>
       </div>
+    )
+  }
+
+  if (type === "left-sidebar") {
+    return (
+      <Card className="p-4 sticky top-4">
+        <div className="space-y-2">
+          <div className="text-xs text-muted-foreground">Advertisement</div>
+          <h3 className="font-semibold">Design Templates</h3>
+          <p className="text-sm text-muted-foreground">
+            Access thousands of premium design templates for your projects
+          </p>
+          <Button
+            className="w-full"
+            onClick={() => window.open("https://example.com/templates", "_blank")}
+          >
+            Browse Templates
+          </Button>
+        </div>
+      </Card>
+    )
+  }
+
+  if (type === "right-sidebar") {
+    return (
+      <Card className="p-4 sticky top-4">
+        <div className="space-y-2">
+          <div className="text-xs text-muted-foreground">Advertisement</div>
+          <h3 className="font-semibold">CSS Gradient Course</h3>
+          <p className="text-sm text-muted-foreground">
+            Master CSS gradients with our comprehensive online course
+          </p>
+          <Button
+            className="w-full"
+            onClick={() => window.open("https://example.com/css-course", "_blank")}
+          >
+            Learn More
+          </Button>
+        </div>
+      </Card>
     )
   }
 

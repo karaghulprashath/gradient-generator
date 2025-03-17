@@ -1,5 +1,6 @@
 import { Ad } from "@/components/ad"
 import { GradientGenerator } from "@/components/gradient-generator"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -30,8 +31,8 @@ export default function Home() {
         <footer className="mt-12 pt-6 border-t text-center text-sm text-muted-foreground">
           <p>© {new Date().getFullYear()} Ultimate CSS Gradient Generator. All rights reserved.</p>
           <p className="mt-1">
-            <a href="#" className="hover:underline">Privacy Policy</a> · 
-            <a href="#" className="hover:underline ml-2">Terms of Service</a>
+            <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link> · 
+            <Link href="/terms-of-service" className="hover:underline ml-2">Terms of Service</Link>
           </p>
         </footer>
       </div>

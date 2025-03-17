@@ -2,12 +2,11 @@
 
 import { ExportOptions } from "@/components/export-options"
 import type { GradientConfig } from "@/components/gradient-generator"
-import { SocialMediaSharer } from "@/components/social-media-sharer"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { UsageGuide } from "@/components/usage-guide"
-import { BookOpen, Download, Share2 } from "lucide-react"
+import { BookOpen, Download } from "lucide-react"
 import { useState } from "react"
 
 interface UtilityModalProps {
@@ -24,22 +23,18 @@ export function UtilityModal({ gradientConfig, onExport }: UtilityModalProps) {
       <DialogTrigger asChild>
         <Button size="lg" className="gap-2">
           <Download className="h-4 w-4" />
-          Share & Export
+          Export & Usage
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle>Share & Export Gradient</DialogTitle>
+          <DialogTitle>Export & Usage Guide</DialogTitle>
         </DialogHeader>
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-4">
-          <TabsList className="grid grid-cols-3 mb-4">
+          <TabsList className="grid grid-cols-2 mb-4">
             <TabsTrigger value="export" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
               Export
-            </TabsTrigger>
-            <TabsTrigger value="share" className="flex items-center gap-2">
-              <Share2 className="h-4 w-4" />
-              Share
             </TabsTrigger>
             <TabsTrigger value="guide" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
@@ -48,9 +43,6 @@ export function UtilityModal({ gradientConfig, onExport }: UtilityModalProps) {
           </TabsList>
           <TabsContent value="export">
             <ExportOptions onExport={onExport} />
-          </TabsContent>
-          <TabsContent value="share">
-            <SocialMediaSharer gradientConfig={gradientConfig} />
           </TabsContent>
           <TabsContent value="guide">
             <UsageGuide gradientConfig={gradientConfig} />

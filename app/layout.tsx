@@ -40,6 +40,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://karaghulprashath.github.io/gradient-generator" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9710534353231565" crossOrigin="anonymous"></script>
+        <meta name="google-adsense-account" content="ca-pub-9710534353231565"></meta>
       </head>
       <body className="min-h-screen bg-background">
         {children}
